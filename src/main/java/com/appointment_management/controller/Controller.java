@@ -313,17 +313,17 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.OK).body(staffDTO);
     }
 
-    @GetMapping("/staff/fetchByStaffId")
+    @GetMapping("/staff/fetchStaffByStaffId")
     public StaffDTO fetchStaffByStaffId(@RequestParam long staffId) {
         return iStaffService.fetchStaff(staffId);
     }
 
-    @GetMapping("/staff/fetchByEmail")
+    @GetMapping("/staff/fetchStaffByEmail")
     public StaffDTO fetchStaffByEmail(@RequestParam String email) {
         return iStaffService.fetchStaffByEmail(email);
     }
 
-    @GetMapping("/staff/fetchByPhoneNumber")
+    @GetMapping("/staff/fetchStaffByPhoneNumber")
     public StaffDTO fetchStaffByPhoneNumber(@RequestParam String phoneNumber) {
         return iStaffService.fetchStaffByPhoneNumber(phoneNumber);
     }
@@ -333,7 +333,7 @@ public class Controller {
         return iStaffService.fetchStaffNameByStaffId(staffId);
     }
 
-    @GetMapping("/staff/fetchAll")
+    @GetMapping("/staff/fetchAllStaff")
     public List<StaffDTO> fetchAllStaff() {
         return iStaffService.fetchAllStaff();
     }
