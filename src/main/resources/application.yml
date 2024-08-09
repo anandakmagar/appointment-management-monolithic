@@ -84,8 +84,8 @@ spring:
         security.protocol: SASL_SSL
         sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}"
 
-    prometheus:
-      query_endpoint: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom
-      remote_write_endpoint: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
-      instance_id: 1731691
-      api_token: ${GRAFANA_API_TOKEN}
+#    prometheus:
+#      query_endpoint: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom
+#      remote_write_endpoint: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
+#      instance_id: 1731691
+#      api_token: ${GRAFANA_API_TOKEN}
