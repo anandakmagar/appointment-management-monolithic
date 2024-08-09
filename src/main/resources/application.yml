@@ -41,5 +41,5 @@ spring:
         sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}"
 
     prometheus:
-      endpoint: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom
-      api_token: ${GRAFANA_API_TOKEN}
+      url: https://prometheus-prod-36-prod-us-west-0.grafana.net
+      username: 1731691
