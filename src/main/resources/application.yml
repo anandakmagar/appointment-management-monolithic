@@ -1,21 +1,29 @@
 server:
   port: ${PORT:8080}
+
 spring:
+  main:
+    allow-bean-definition-overriding: true
+
   security:
     user:
       email: admin@admin.com
       password: adminpassword
       role: ADMIN
+
   application:
     name: appointment-management-app
+
   datasource:
     initialization-mode: always
     username: admin
     password: admin1234
     url: jdbc:mysql://database-1.coz3uh2yaw2j.us-east-2.rds.amazonaws.com/appointmentsdb
+
   jpa:
     properties:
       javax.persistence.schema-generation.database.action: update
+
   kafka:
     bootstrap-servers: "coherent-mako-9849-us1-kafka.upstash.io:9092"
     properties:
@@ -40,6 +48,12 @@ spring:
         security.protocol: SASL_SSL
         sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}"
 
-    prometheus:
-      url: https://prometheus-prod-36-prod-us-west-0.grafana.net
-      username: 1731691
+  prometheus:
+    url: https://prometheus-prod-36-prod-us-west-0.grafana.net
+    username: 1731691
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: false
