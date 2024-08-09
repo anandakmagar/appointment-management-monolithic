@@ -1,14 +1,14 @@
-package com.appointment_management.config;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.client.WebClient;
-
-@Configuration
-public class CustomPrometheusConfig {
-
-    @Bean
-    public WebClient webClient(WebClient.Builder builder) {
-        return builder.build();
-    }
-}
+//package com.appointment_management.config;
+//
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.web.reactive.function.client.WebClient;
+//
+//@Configuration
+//public class CustomPrometheusConfig {
+//
+//    @Bean
+//    public WebClient webClient(WebClient.Builder builder) {
+//        return builder.build();
+//    }
+//}
