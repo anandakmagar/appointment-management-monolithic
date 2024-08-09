@@ -44,3 +44,13 @@ prometheus:
   url: https://prometheus-prod-36-prod-us-west-0.grafana.net
   username: 1731691
   api-token: ${GRAFANA_API_TOKEN}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
