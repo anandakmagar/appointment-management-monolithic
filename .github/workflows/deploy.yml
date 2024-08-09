@@ -1,12 +1,16 @@
-name: Build and Deploy
+name: CI/CD Pipeline
 
+# This triggers the workflow on push or pull request events
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,21 +18,23 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v1
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'
 
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Push metrics to Prometheus
-        env:
-          GRAFANA_API_TOKEN: ${{ secrets.GRAFANA_API_TOKEN }}
-        run: |
-          curl -X POST -H "Authorization: Bearer $GRAFANA_API_TOKEN" \
-               -H "Content-Type: application/json" \
-               -d '{"some_metric": 1}' \
-               https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
+      - name: Deploy to Heroku
+        run: git push heroku main
 
-      # Optional: Deploy steps can be added here
+      - name: Run Prometheus Push
+        run: |
+          echo "remote_write:
+            - url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
+              basic_auth:
+                username: '1731691'
+                password: '${{ secrets.GRAFANA_API_TOKEN }}'" > prometheus.yml
+
+      - name: Deploy Prometheus
+        run: mvn spring-boot:run
