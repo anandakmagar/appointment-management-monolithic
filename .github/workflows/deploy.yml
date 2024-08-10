@@ -22,6 +22,15 @@ jobs:
         with:
           java-version: '11'
 
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+
+      - name: Fetch GRAFANA_API_TOKEN from Heroku
+        run: |
+          heroku auth:token
+          GRAFANA_API_TOKEN=$(heroku config:get GRAFANA_API_TOKEN -a https://appointment-management-da90d3c8d8ca.herokuapp.com/)
+          echo "GRAFANA_API_TOKEN=${GRAFANA_API_TOKEN}" >> $GITHUB_ENV
+
       - name: Build with Maven
         run: mvn clean install
 
@@ -34,7 +43,7 @@ jobs:
             - url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
               basic_auth:
                 username: '1731691'
-                password: '${{ secrets.GRAFANA_API_TOKEN }}'" > prometheus.yml
+                password: '${GRAFANA_API_TOKEN}'" > prometheus.yml
 
       - name: Deploy Prometheus
         run: mvn spring-boot:run
