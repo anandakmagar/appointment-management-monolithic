@@ -25,10 +25,12 @@ jobs:
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
+      - name: Authenticate Heroku CLI
+        run: heroku auth:token
+
       - name: Fetch GRAFANA_API_TOKEN from Heroku
         run: |
-          heroku auth:token
-          GRAFANA_API_TOKEN=$(heroku config:get GRAFANA_API_TOKEN -a https://appointment-management-da90d3c8d8ca.herokuapp.com/)
+          GRAFANA_API_TOKEN=$(heroku config:get GRAFANA_API_TOKEN -a appointment-management-da90d3c8d8ca)
           echo "GRAFANA_API_TOKEN=${GRAFANA_API_TOKEN}" >> $GITHUB_ENV
 
       - name: Build with Maven
