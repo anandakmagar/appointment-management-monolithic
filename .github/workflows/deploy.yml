@@ -19,7 +19,6 @@ jobs:
 
       - name: Test Prometheus API Query
         run: |
-          echo "GRAFANA_API_TOKEN=${{ secrets.GRAFANA_API_TOKEN }}" # Print for debugging
           curl -G 'https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/api/v1/query' \
-            -H "Authorization: Bearer $GRAFANA_API_TOKEN" \
+            -H "Authorization: Bearer ${{ secrets.GRAFANA_API_TOKEN }}" \
             --data-urlencode 'query=up'
