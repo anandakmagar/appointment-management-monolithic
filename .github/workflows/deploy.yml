@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# This triggers the workflow on push or pull request events
 on:
   push:
     branches:
@@ -22,16 +21,8 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Install Heroku CLI
-        run: curl https://cli-assets.heroku.com/install.sh | sh
-
-      - name: Authenticate Heroku CLI
-        run: heroku auth:token
-
-      - name: Fetch GRAFANA_API_TOKEN from Heroku
-        run: |
-          GRAFANA_API_TOKEN=$(heroku config:get GRAFANA_API_TOKEN -a appointment-management-da90d3c8d8ca)
-          echo "GRAFANA_API_TOKEN=${GRAFANA_API_TOKEN}" >> $GITHUB_ENV
+      - name: Fetch GRAFANA_API_TOKEN from GitHub Secrets
+        run: echo "GRAFANA_API_TOKEN=${{ secrets.GRAFANA_API_TOKEN }}" >> $GITHUB_ENV
 
       - name: Build with Maven
         run: mvn clean install
@@ -39,13 +30,13 @@ jobs:
       - name: Deploy to Heroku
         run: git push heroku main
 
-      - name: Run Prometheus Push
+      - name: Configure Prometheus Push
         run: |
           echo "remote_write:
             - url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
               basic_auth:
                 username: '1731691'
-                password: '${GRAFANA_API_TOKEN}'" > prometheus.yml
+                password: '${{ secrets.GRAFANA_API_TOKEN }}'" > prometheus.yml
 
       - name: Deploy Prometheus
         run: mvn spring-boot:run
