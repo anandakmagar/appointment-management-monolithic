@@ -17,6 +17,9 @@ jobs:
       - name: Set up environment
         run: echo "GRAFANA_API_TOKEN=${{ secrets.GRAFANA_API_TOKEN }}" >> $GITHUB_ENV
 
+      - name: Print environment variables
+        run: echo "GRAFANA_API_TOKEN=${{ secrets.GRAFANA_API_TOKEN }}"
+
       - name: Test Prometheus API Query
         run: |
           curl -G 'https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/api/v1/query' \
