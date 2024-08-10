@@ -9,7 +9,5 @@ scrape_configs:
 
 remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
-    basic_auth:
-      username: '1732643'
-      password: '${GRAFANA_API_TOKEN}'  # Ensure this environment variable is set correctly
-
+    authorization:
+      credentials: "${GRAFANA_API_TOKEN}"
