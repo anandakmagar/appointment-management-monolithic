@@ -1,3 +1,20 @@
+#global:
+#  scrape_interval: 15s  # How frequently to scrape targets
+#
+#scrape_configs:
+#  - job_name: 'appointment-management'
+#    static_configs:
+#      - targets: ['appointment-management-da90d3c8d8ca.herokuapp.com']
+#        labels:
+#          group: 'appointment-management'
+#
+#
+#remote_write:
+#  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+#    basic_auth:
+#      username: '1732643'
+#      password: '${GRAFANA_API_TOKEN}'
+
 global:
   scrape_interval: 15s  # How frequently to scrape targets
 
@@ -8,6 +25,11 @@ scrape_configs:
         labels:
           group: 'appointment-management'
 
+  - job_name: 'windows_exporter'  # New job for Windows Exporter
+    static_configs:
+      - targets: ['localhost:9182']  # Update with the IP and port of your Windows Exporter
+        labels:
+          group: 'windows_servers'
 
 remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
