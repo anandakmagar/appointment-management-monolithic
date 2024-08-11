@@ -37,5 +37,5 @@ jobs:
       - name: Test Prometheus API Query
         run: |
           curl -G 'https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/api/v1/query' \
-            -H "Authorization: Bearer ${GRAFANA_API_TOKEN}" \
+            -u "1732643:${GRAFANA_API_TOKEN}" \
             --data-urlencode 'query=up'
