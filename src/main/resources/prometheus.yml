@@ -10,4 +10,5 @@ scrape_configs:
 remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
     authorization:
-      credentials: "${GRAFANA_API_TOKEN}"
+      credentials: '${GRAFANA_API_TOKEN}'
+
