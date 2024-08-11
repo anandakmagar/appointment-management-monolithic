@@ -7,11 +7,7 @@ scrape_configs:
     scrape_timeout: 15s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets:
-          - '54.159.116.102:80'
-          - '18.208.60.216:80'
-          - '52.5.82.174:80'
-          - '54.165.58.209:80'
+      - targets: ['appointment-management-da90d3c8d8ca.herokuapp.com']
 
 remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
