@@ -6,6 +6,9 @@ import com.appointment_management.dto.RegisterRequestDTO;
 import com.appointment_management.dto.RegisterResponseDTO;
 import com.appointment_management.entity.OurUser;
 import com.appointment_management.exception.UserAlreadyExistsWithEmailException;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 
 @Service
 public class UserManagementService {
@@ -29,6 +34,18 @@ public class UserManagementService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    private final AtomicInteger activeUsers = new AtomicInteger(0);
+
+    @Autowired
+    private MeterRegistry meterRegistry;
+
+    @PostConstruct
+    public void initMetrics() {
+        Gauge.builder("active_users", (Supplier<Number>) activeUsers)
+                .description("Number of active logged-in users")
+                .register(meterRegistry);
+    }
 
     public boolean deleteByUserId(long userId) {
         ourUserRepository.deleteByUserId(userId);
