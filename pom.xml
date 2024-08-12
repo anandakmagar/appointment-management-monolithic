@@ -102,13 +102,13 @@
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>backport-util-concurrent</groupId>
-            <artifactId>backport-util-concurrent</artifactId>
-            <version>3.1</version>
-        </dependency>
+		<dependency>
+			<groupId>backport-util-concurrent</groupId>
+			<artifactId>backport-util-concurrent</artifactId>
+			<version>3.1</version>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 	<dependencyManagement>
 		<dependencies>
 		</dependencies>
