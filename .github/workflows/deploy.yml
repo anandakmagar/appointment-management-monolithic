@@ -1,41 +1,41 @@
-name: Test Prometheus Query
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch: # Allows manual triggering
-
-jobs:
-  test-query:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up environment
-        run: echo "GRAFANA_API_TOKEN=${{ secrets.GRAFANA_API_TOKEN }}" >> $GITHUB_ENV
-
-      - name: Create Prometheus Config
-        run: |
-          echo "global:" > prometheus.yml
-          echo "  scrape_interval: 15s" >> prometheus.yml
-          echo "" >> prometheus.yml
-          echo "scrape_configs:" >> prometheus.yml
-          echo "  - job_name: 'appointment-management'" >> prometheus.yml
-          echo "    metrics_path: '/actuator/prometheus'" >> prometheus.yml
-          echo "    static_configs:" >> prometheus.yml
-          echo "      - targets: ['appointment-management-da90d3c8d8ca.herokuapp.com']" >> prometheus.yml
-          echo "" >> prometheus.yml
-          echo "remote_write:" >> prometheus.yml
-          echo "  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push" >> prometheus.yml
-          echo "    basic_auth:" >> prometheus.yml
-          echo "      username: '1732643'" >> prometheus.yml
-          echo "      password: '${GRAFANA_API_TOKEN}'" >> prometheus.yml
-
-      - name: Test Prometheus API Query
-        run: |
-          curl -G 'https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/api/v1/query' \
-            -u "1732643:${GRAFANA_API_TOKEN}" \
-            --data-urlencode 'query=up'
+#name: Test Prometheus Query
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#  workflow_dispatch: # Allows manual triggering
+#
+#jobs:
+#  test-query:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Set up environment
+#        run: echo "GRAFANA_API_TOKEN=${{ secrets.GRAFANA_API_TOKEN }}" >> $GITHUB_ENV
+#
+#      - name: Create Prometheus Config
+#        run: |
+#          echo "global:" > prometheus.yml
+#          echo "  scrape_interval: 15s" >> prometheus.yml
+#          echo "" >> prometheus.yml
+#          echo "scrape_configs:" >> prometheus.yml
+#          echo "  - job_name: 'appointment-management'" >> prometheus.yml
+#          echo "    metrics_path: '/actuator/prometheus'" >> prometheus.yml
+#          echo "    static_configs:" >> prometheus.yml
+#          echo "      - targets: ['appointment-management-da90d3c8d8ca.herokuapp.com']" >> prometheus.yml
+#          echo "" >> prometheus.yml
+#          echo "remote_write:" >> prometheus.yml
+#          echo "  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push" >> prometheus.yml
+#          echo "    basic_auth:" >> prometheus.yml
+#          echo "      username: '1732643'" >> prometheus.yml
+#          echo "      password: '${GRAFANA_API_TOKEN}'" >> prometheus.yml
+#
+#      - name: Test Prometheus API Query
+#        run: |
+#          curl -G 'https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/api/v1/query' \
+#            -u "1732643:${GRAFANA_API_TOKEN}" \
+#            --data-urlencode 'query=up'
