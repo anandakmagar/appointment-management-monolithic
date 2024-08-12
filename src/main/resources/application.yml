@@ -49,8 +49,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: 'prometheus'
+        include: "prometheus"
+
   metrics:
     export:
       prometheus:
         enabled: true
+    enable:
+      hikaricp: true
