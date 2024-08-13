@@ -376,9 +376,11 @@ public class Controller {
     }
 
     @PostMapping("/security/logout")
-    public void logout(){
+    public ResponseEntity<String> logout() {
         userManagementService.logout();
+        return ResponseEntity.ok("Logout successful");
     }
+
     @PostMapping("/security/refresh-token")
     public ResponseEntity<LoginResponseDTO> refreshToken(@RequestBody LoginResponseDTO refreshTokenRequest) {
         LoginResponseDTO response = userManagementService.refreshToken(refreshTokenRequest);
