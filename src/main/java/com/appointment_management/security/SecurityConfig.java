@@ -30,7 +30,7 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/security/login**","/metrics","/security/logout", "/actuator/prometheus", "/security/send-reset-code**","/security/change-password**","/public/**").permitAll()
+                        .requestMatchers("/security/login**","/metrics","/security/logout**", "/actuator/prometheus", "/security/send-reset-code**","/security/change-password**","/public/**").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
