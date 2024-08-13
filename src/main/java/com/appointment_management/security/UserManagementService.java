@@ -112,7 +112,7 @@ public class UserManagementService {
             loginResponseDTO.setStatusCode(200);
             loginResponseDTO.setToken(jwt);
             loginResponseDTO.setRefreshToken(refreshToken);
-            loginResponseDTO.setExpirationTime("1 hour");
+            loginResponseDTO.setExpirationTime("30 minutes");
             loginResponseDTO.setMessage("Successfully logged in");
         } catch (Exception e) {
             loginResponseDTO.setStatusCode(401);
