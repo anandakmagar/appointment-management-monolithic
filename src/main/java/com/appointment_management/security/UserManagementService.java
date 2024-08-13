@@ -121,6 +121,10 @@ public class UserManagementService {
         return loginResponseDTO;
     }
 
+    public void logout() {
+        activeUsers.decrementAndGet(); // Decrementing active users count
+    }
+
     public LoginResponseDTO refreshToken(LoginResponseDTO refreshTokenRequest) {
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
         try {
