@@ -11,7 +11,7 @@ remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
     basic_auth:
       username: "1732643"
-      password: "__GRAFANA_API_TOKEN__"  # This placeholder is replaced by the Java code
+      password: "__GRAFANA_API_TOKEN__"
     queue_config:
       max_samples_per_send: 1000
       max_shards: 200
