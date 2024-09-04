@@ -9,7 +9,7 @@ scrape_configs:
         labels:
           group: 'appointment-management'
     tls_config:
-      insecure_skip_verify: true 
+      insecure_skip_verify: true
 
 remote_write:
   - url: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-cb60e464-7a85-46fb-9797-e331c2d55611/api/v1/remote_write
@@ -19,4 +19,6 @@ remote_write:
       max_samples_per_send: 1000
       max_shards: 200
       capacity: 2500
+
+      #
 
