@@ -11,7 +11,7 @@ remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom
     basic_auth:
       username: 1775119
-      password: glc_eyJvIjoiMTE5MzE0MCIsIm4iOiJzdGFjay0xMDI5MDY2LWhtLXJlYWQtdW5pcXVlLXRva2VuYXMiLCJrIjoiSzYwMjJwNHJQdDlYUzdwd0Y2T2I2bzFoIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
+      password: glc_eyJvIjoiMTE5MzE0MCIsIm4iOiJyZWFkLXdyaXRlLXJlYWQtd3JpdGUiLCJrIjoiOTZ1R3E3TzJabzg1SklpWWhXMWlGMDM2IiwibSI6eyJyIjoidXMifX0=
 #      https://github:com/anandakmagar/appointment-management-monolithic/security/secret-scanning/unblock-secret/2lcVSiwniOEWiPpjrkNZyZmBay5 (unblock secret)
     queue_config:
       max_samples_per_send: 1000
