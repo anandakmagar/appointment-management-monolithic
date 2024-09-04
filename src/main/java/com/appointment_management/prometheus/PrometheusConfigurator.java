@@ -6,7 +6,7 @@ import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
 import software.amazon.awssdk.services.secretsmanager.model.SecretsManagerException;
-import com.fasterxml.jackson.databind.ObjectMapper;  // Add this import for JSON parsing
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,7 +17,7 @@ public class PrometheusConfigurator {
 
     private static final String SECRET_NAME = "GrafanaCloudCredentials";
     private static final Region AWS_REGION = Region.US_EAST_2;
-    private static final String PROMETHEUS_CONFIG_PATH = "/etc/prometheus/prometheus.yml";
+    private static final String PROMETHEUS_CONFIG_PATH = "src/main/resources/prometheus.yml";
 
     public static void main(String[] args) {
         String apiToken = fetchGrafanaApiToken();
