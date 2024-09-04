@@ -8,10 +8,11 @@ scrape_configs:
       - targets: ["appointment-management-da90d3c8d8ca.herokuapp.com"]
 
 remote_write:
-  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom
     basic_auth:
-      username: 1732643
-      password: glc_eyJvIjoiMTE5MzE0MCIsIm4iOiJhZG1pbjItYWRtaW4yIiwiayI6ImRzemNkNDVNVTY0M3ZUNmY5N2JGN2I4biIsIm0iOnsiciI6InVzIn19
+      username: 1775119
+      password: glc_eyJvIjoiMTE5MzE0MCIsIm4iOiJzdGFjay0xMDI5MDY2LWhtLXJlYWQtdW5pcXVlLXRva2VuYXMiLCJrIjoiSzYwMjJwNHJQdDlYUzdwd0Y2T2I2bzFoIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
+#      https://github:com/anandakmagar/appointment-management-monolithic/security/secret-scanning/unblock-secret/2lcVSiwniOEWiPpjrkNZyZmBay5 (unblock secret)
     queue_config:
       max_samples_per_send: 1000
       max_shards: 200
