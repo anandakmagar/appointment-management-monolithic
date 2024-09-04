@@ -3,11 +3,13 @@ global:
 
 scrape_configs:
   - job_name: 'appointment-management'
-    metrics_path: '/actuator/metrics'  # This matches the base path specified in your Spring Boot configuration
+    metrics_path: '/actuator/metrics'
     static_configs:
       - targets: ['https://appointment-management-da90d3c8d8ca.herokuapp.com']
         labels:
           group: 'appointment-management'
+    tls_config:
+      insecure_skip_verify: true 
 
 remote_write:
   - url: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-cb60e464-7a85-46fb-9797-e331c2d55611/api/v1/remote_write
@@ -17,3 +19,4 @@ remote_write:
       max_samples_per_send: 1000
       max_shards: 200
       capacity: 2500
+
