@@ -1,20 +1,17 @@
 global:
-  scrape_interval: 15s  # How frequently to scrape targets
+  scrape_interval: 15s
 
 scrape_configs:
   - job_name: "appointment-management"
-    metrics_path: '/actuator/prometheus'
+    metrics_path: "/actuator/prometheus"
     static_configs:
       - targets: ["appointment-management-da90d3c8d8ca.herokuapp.com"]
 
 remote_write:
-  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom
-    basic_auth:
-      username: 1775119
-      password: glc_eyJvIjoiMTE5MzE0MCIsIm4iOiJyZWFkLXdyaXRlLXJlYWQtd3JpdGUiLCJrIjoiOTZ1R3E3TzJabzg1SklpWWhXMWlGMDM2IiwibSI6eyJyIjoidXMifX0=
-#      https://github:com/anandakmagar/appointment-management-monolithic/security/secret-scanning/unblock-secret/2lcVSiwniOEWiPpjrkNZyZmBay5 (unblock secret)
+  - url: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-cb60e464-7a85-46fb-9797-e331c2d55611/api/v1/remote_write
+    sigv4:
+      region: us-east-2
     queue_config:
       max_samples_per_send: 1000
       max_shards: 200
       capacity: 2500
-
