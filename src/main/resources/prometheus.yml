@@ -9,6 +9,8 @@ scrape_configs:
       password: "adminpassword"
     static_configs:
       - targets: ["appointment-management-da90d3c8d8ca.herokuapp.com"]
+        tls_config:
+          insecure_skip_verify: true  # Skip certificate validation
 
 remote_write:
   - url: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-cb60e464-7a85-46fb-9797-e331c2d55611/api/v1/remote_write
