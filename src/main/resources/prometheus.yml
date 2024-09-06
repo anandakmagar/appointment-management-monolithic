@@ -1,25 +1,10 @@
-#global:
-#  scrape_interval: 15s
-#
 #scrape_configs:
-#  - job_name: 'pushgateway'
-#    static_configs:
-#      - targets: ['ec2-3-137-156-96.us-east-2.compute.amazonaws.com:9191']
-#    metrics_path: '/metrics'
-#
-#remote_write:
-#  - url: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-cb60e464-7a85-46fb-9797-e331c2d55611/api/v1/remote_write
-#    sigv4:
-#      region: us-east-2
-#    queue_config:
-#      max_samples_per_send: 1000
-#      max_shards: 200
-#      capacity: 2500
-
-
-#scrape_configs:
-#  - job_name: 'heroku-app'
+#  - job_name: 'appointment-management-app'
+#    scrape_interval: 5s
 #    static_configs:
 #      - targets: ['appointment-management-da90d3c8d8ca.herokuapp.com']
 #    metrics_path: '/actuator/prometheus'
 #    scheme: https
+
+
+#I already created this file in ec2 instance, so I am not placing it here
