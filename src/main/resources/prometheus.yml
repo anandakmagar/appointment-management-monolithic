@@ -2,13 +2,10 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: "appointment-management"
-    metrics_path: "/actuator/prometheus"
-    scheme: https  # Prometheus will use HTTPS for scraping this target
+  - job_name: 'pushgateway'
     static_configs:
-      - targets: ["ec2-3-137-156-96.us-east-2.compute.amazonaws.com:9191"]
-        tls_config:
-          insecure_skip_verify: true  # Skip certificate validation for HTTPS
+      - targets: ['ec2-3-137-156-96.us-east-2.compute.amazonaws.com:9191']
+    metrics_path: '/metrics'
 
 remote_write:
   - url: https://aps-workspaces.us-east-2.amazonaws.com/workspaces/ws-cb60e464-7a85-46fb-9797-e331c2d55611/api/v1/remote_write
