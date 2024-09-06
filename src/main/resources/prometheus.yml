@@ -6,7 +6,7 @@ scrape_configs:
     metrics_path: "/actuator/prometheus"
     scheme: https  # Prometheus will use HTTPS for scraping this target
     static_configs:
-      - targets: ["appointment-management-da90d3c8d8ca.herokuapp.com"]
+      - targets: ["ec2-3-137-156-96.us-east-2.compute.amazonaws.com:9191"]
         tls_config:
           insecure_skip_verify: true  # Skip certificate validation for HTTPS
 
