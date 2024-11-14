@@ -70,11 +70,11 @@ public class AppointmentServiceImpl implements IAppointmentService {
             String clientEmail = clientDTO.getEmail();
             String staffEmail = staffDTO.getEmail();
 
-            String message1 = String.format("Email: [%s], Your appointment has been scheduled. Please check the details:\n%s", clientEmail, savedAppointmentDTO);
-            kafkaTemplate.send("appointment-creation-client", clientEmail, message1);
-
-            String message2 = String.format("Email: [%s], You have been scheduled for the appointment. Please check the details:\n%s", staffEmail, savedAppointmentDTO);
-            kafkaTemplate.send("appointment-creation-staff", staffEmail, message2);
+//            String message1 = String.format("Email: [%s], Your appointment has been scheduled. Please check the details:\n%s", clientEmail, savedAppointmentDTO);
+//            kafkaTemplate.send("appointment-creation-client", clientEmail, message1);
+//
+//            String message2 = String.format("Email: [%s], You have been scheduled for the appointment. Please check the details:\n%s", staffEmail, savedAppointmentDTO);
+//            kafkaTemplate.send("appointment-creation-staff", staffEmail, message2);
 
             return savedAppointmentDTO.getAppointmentNumber();
         }
@@ -111,11 +111,11 @@ public class AppointmentServiceImpl implements IAppointmentService {
         appointment.setUpdatedAt(LocalDateTime.now());
         Appointment updatedAppointment = appointmentRepository.save(appointment);
 
-        String message1 = String.format("Your appointment has been updated. Please check the updated details:\n%s", AppointmentMapper.mapToAppointmentDTO(updatedAppointment));
-        emailService.sendEmail(clientDTO.getEmail(), "Appointment Update Notification", message1);
-
-        String message2 = String.format("An appointment assigned to you has been updated. Please check the updated details:\n%s", AppointmentMapper.mapToAppointmentDTO(updatedAppointment));
-        emailService.sendEmail(staffDTO.getEmail(), "Appointment Update Notification", message2);
+//        String message1 = String.format("Your appointment has been updated. Please check the updated details:\n%s", AppointmentMapper.mapToAppointmentDTO(updatedAppointment));
+//        emailService.sendEmail(clientDTO.getEmail(), "Appointment Update Notification", message1);
+//
+//        String message2 = String.format("An appointment assigned to you has been updated. Please check the updated details:\n%s", AppointmentMapper.mapToAppointmentDTO(updatedAppointment));
+//        emailService.sendEmail(staffDTO.getEmail(), "Appointment Update Notification", message2);
 
         return true;
     }
@@ -144,11 +144,11 @@ public class AppointmentServiceImpl implements IAppointmentService {
             String clientEmail = clientDTO.getEmail();
             String staffEmail = staffDTO.getEmail();
 
-            String message1 = String.format("Email: [%s], Your appointment has been deleted. Please check the details of the DELETED appointment:\n%s", clientEmail, deletedAppointmentDTO);
-            kafkaTemplate.send("appointment-deletion-client", clientEmail, message1);
-
-            String message2 = String.format("Email: [%s], Appointment you were assigned has been deleted. Please check the details of the DELETED appointment:\n%s", staffEmail, deletedAppointmentDTO);
-            kafkaTemplate.send("appointment-deletion-staff", staffEmail, message2);
+//            String message1 = String.format("Email: [%s], Your appointment has been deleted. Please check the details of the DELETED appointment:\n%s", clientEmail, deletedAppointmentDTO);
+//            kafkaTemplate.send("appointment-deletion-client", clientEmail, message1);
+//
+//            String message2 = String.format("Email: [%s], Appointment you were assigned has been deleted. Please check the details of the DELETED appointment:\n%s", staffEmail, deletedAppointmentDTO);
+//            kafkaTemplate.send("appointment-deletion-staff", staffEmail, message2);
         }
         return true;
     }

@@ -52,8 +52,8 @@ public class StaffServiceImpl implements IStaffService {
 
         userManagementService.register(registerRequestDTO);
 
-        String message = String.format("Email: [%s], Your staff registration has been completed and your staff id is %d", savedStaff.getEmail(), staffId);
-        kafkaTemplate.send("staff-registration", savedStaff.getEmail(), message);
+//        String message = String.format("Email: [%s], Your staff registration has been completed and your staff id is %d", savedStaff.getEmail(), staffId);
+//        kafkaTemplate.send("staff-registration", savedStaff.getEmail(), message);
 
         return staffId;
     }
@@ -89,10 +89,10 @@ public class StaffServiceImpl implements IStaffService {
 
         assert updatedStaff != null;
         StaffDTO updatedStaffDTO = StaffMapper.mapToStaffDTO(updatedStaff);
-        String message = String.format("Email: [%s], Your staff record has been updated at %s. The current record is as follows:\n%s",
-                updatedStaff.getEmail(), updatedStaff.getUpdatedAt().toString(), updatedStaffDTO);
-
-        kafkaTemplate.send("staff-update", updatedStaff.getEmail(), message);
+//        String message = String.format("Email: [%s], Your staff record has been updated at %s. The current record is as follows:\n%s",
+//                updatedStaff.getEmail(), updatedStaff.getUpdatedAt().toString(), updatedStaffDTO);
+//
+//        kafkaTemplate.send("staff-update", updatedStaff.getEmail(), message);
 
         return isUpdated;
     }
@@ -110,8 +110,8 @@ public class StaffServiceImpl implements IStaffService {
 
         userManagementService.deleteByUserId(staffId);
 
-        String message = String.format("Email: [%s], You have been removed from our staff database.", staffDTO.getEmail());
-        kafkaTemplate.send("staff-deletion", staffDTO.getEmail(), message);
+//        String message = String.format("Email: [%s], You have been removed from our staff database.", staffDTO.getEmail());
+//        kafkaTemplate.send("staff-deletion", staffDTO.getEmail(), message);
 
         return true;
     }
