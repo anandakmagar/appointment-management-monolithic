@@ -38,8 +38,8 @@ public class ClientServiceImpl implements IClientService {
         Client savedClient = clientRepository.save(client);
         ClientDTO savedClientDTO = ClientMapper.mapToClientDTO(savedClient);
 
-        String message = String.format("Email: [%s], Your client registration has been completed and your client id is %d", savedClientDTO.getEmail(), savedClientDTO.getClientId());
-        kafkaTemplate.send("client-registration", savedClientDTO.getEmail(), message);
+//        String message = String.format("Email: [%s], Your client registration has been completed and your client id is %d", savedClientDTO.getEmail(), savedClientDTO.getClientId());
+//        kafkaTemplate.send("client-registration", savedClientDTO.getEmail(), message);
 
         return clientId;
     }
@@ -69,10 +69,10 @@ public class ClientServiceImpl implements IClientService {
             Client updatedClient = clientRepository.save(client);
 
             ClientDTO updatedClientDTO = ClientMapper.mapToClientDTO(updatedClient);
-            String message = String.format("Email: [%s], Your client record has been updated at %s. The current record is as follows:\n%s",
-                    updatedClientDTO.getEmail(), updatedClientDTO.getUpdatedAt().toString(), updatedClientDTO);
-
-            kafkaTemplate.send("client-update", updatedClientDTO.getEmail(), message);
+//            String message = String.format("Email: [%s], Your client record has been updated at %s. The current record is as follows:\n%s",
+//                    updatedClientDTO.getEmail(), updatedClientDTO.getUpdatedAt().toString(), updatedClientDTO);
+//
+//            kafkaTemplate.send("client-update", updatedClientDTO.getEmail(), message);
 
             isUpdated = true;
         }
@@ -89,8 +89,8 @@ public class ClientServiceImpl implements IClientService {
 
         clientRepository.deleteByClientId(clientId);
 
-        String message = String.format("Email: [%s], You have been removed from our client database.", clientEmail);
-        kafkaTemplate.send("client-deletion", clientEmail, message);
+//        String message = String.format("Email: [%s], You have been removed from our client database.", clientEmail);
+//        kafkaTemplate.send("client-deletion", clientEmail, message);
         return true;
     }
 
