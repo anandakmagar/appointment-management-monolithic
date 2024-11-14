@@ -10,4 +10,5 @@ public class AppointmentManagementApplication {
 		SpringApplication.run(AppointmentManagementApplication.class, args);
 	}
 
+	
 }
