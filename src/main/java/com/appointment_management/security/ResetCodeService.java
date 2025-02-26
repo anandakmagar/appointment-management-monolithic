@@ -29,6 +29,7 @@ public class ResetCodeService {
         return resetCodeRepository.findByEmail(email);
     }
 
+    
     public boolean sendPasswordResetCode(String email) {
         ResetCode existingResetCode = resetCodeRepository.findByEmail(email);
         if (existingResetCode != null) {
